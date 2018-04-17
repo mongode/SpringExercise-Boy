@@ -1,4 +1,4 @@
-package cn.mongode.boy;
+package cn.mongode.boy.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -60,5 +60,16 @@ public class Boy {
     
     public void setHeight(Integer height) {
         this.height = height;
+    }
+    
+    @Override
+    public String toString() {
+        return "Boy{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", hight=" + hight +
+                ", height=" + height +
+                '}';
     }
 }

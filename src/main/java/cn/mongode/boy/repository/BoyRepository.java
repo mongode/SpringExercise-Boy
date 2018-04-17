@@ -1,5 +1,6 @@
-package cn.mongode.boy;
+package cn.mongode.boy.repository;
 
+import cn.mongode.boy.domain.Boy;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

@@ -1,16 +1,21 @@
-package cn.mongode.boy;
+package cn.mongode.boy.controller;
 
+import cn.mongode.boy.domain.Boy;
+import cn.mongode.boy.repository.BoyRepository;
+import cn.mongode.boy.service.BoyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class BoyController {
     
     @Autowired
     private BoyRepository boyRepository;
+    
+    @Autowired
+    private BoyService boyService;
     
     /**
      * 查询所有的boy
@@ -82,8 +87,14 @@ public class BoyController {
      * @return
      */
     @GetMapping(value = "/boys/{id}")
-    public Optional<Boy> boyFindById(@PathVariable("id") Integer id) {
-        return boyRepository.findById(id);
+    public Boy boyFindById(@PathVariable("id") Integer id) throws Exception{
+//        return boyRepository.findById(id).get();
+        return boyService.boyFindOne(id);
+    }
+    
+    @PostMapping(value = "/boys/trans")
+    public void boyTransAddTwo() {
+        boyService.addTwo();
     }
     
     /**
@@ -94,6 +105,11 @@ public class BoyController {
     @GetMapping(value = "/boys/age/{age}")
     public List<Boy> boyListByAge(@PathVariable("age") Integer age) {
         return boyRepository.findByAge(age);
+    }
+    
+    @GetMapping(value = "/boys/getage/{id}")
+    public Integer getAgeById(@PathVariable("id") Integer id) throws Exception {
+        return boyService.getAge(id);
     }
 
 }
